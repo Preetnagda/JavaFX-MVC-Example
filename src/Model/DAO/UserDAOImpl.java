@@ -13,7 +13,7 @@ public class UserDAOImpl implements UserDAO {
         DatabaseConnection dbCon = new DatabaseConnection();
         try{
             Statement statement = dbCon.con.createStatement();
-            String sqlQuery = String.format("INSERT INTO User VALUES ('%s', '%s');", user.getUsername(), user.getPassword());
+            String sqlQuery = String.format("INSERT INTO User (username, password, firstname, lastname) VALUES ('%s', '%s', '%s', '%s');", user.getUsername(), user.getPassword(), user.getFirstname(), user.getLastname());
             statement.executeUpdate(sqlQuery);
             dbCon.close();
 
@@ -57,8 +57,12 @@ public class UserDAOImpl implements UserDAO {
         if(!queryResult.next()){
             return null;
         }
+        String firstname = (String) queryResult.getObject("firstname");
+        String lastname = (String) queryResult.getObject("lastname");
         String username = (String) queryResult.getObject("username");
         String password = (String) queryResult.getObject("password");
-        return new User(username, password);
+        Integer isVip = (Integer) queryResult.getObject("is_vip");
+
+        return new User(firstname, lastname, username, password, isVip);
     }
 }
