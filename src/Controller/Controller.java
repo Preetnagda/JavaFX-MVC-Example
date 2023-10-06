@@ -15,7 +15,7 @@ public abstract class Controller {
         this.primaryStage = primaryStage;
     }
 
-    public void switchScene(String sceneType){
+    public BaseScene switchScene(String sceneType){
         SceneFactory sceneFactory = new SceneFactory();
         BaseScene newScene = sceneFactory.create(primaryStage, sceneType);
 
@@ -23,6 +23,7 @@ public abstract class Controller {
 		primaryStage.setScene(newScene.getScene());
 
 		primaryStage.show();
+        return newScene;
     }
 
     protected void generateError(String errorString){

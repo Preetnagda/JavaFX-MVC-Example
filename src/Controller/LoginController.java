@@ -7,6 +7,7 @@ import javafx.scene.control.TextField;
 import src.Model.User;
 import src.Model.DAO.UserDAO;
 import src.Model.DAO.UserDAOImpl;
+import src.View.BaseScene;
 
 public class LoginController extends Controller{
 
@@ -28,8 +29,9 @@ public class LoginController extends Controller{
         User loggedInUser = userdao.getUserByCredentials(inputUsername, inputPassword);
 
         if (loggedInUser != null){
-            switchScene("Dashboard");
-            generateError("Cannot login at this moment.");
+            BaseScene newScene = switchScene("Dashboard");
+            LoggedInController newController = (LoggedInController) newScene.getController();
+            newController.setUser(loggedInUser);
         } else{
             generateError("Invalid Credentials");
         }

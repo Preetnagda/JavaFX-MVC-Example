@@ -13,6 +13,9 @@ public class SceneFactory {
         if(sceneType == "Dashboard"){
             return new DashboardScene(primaryStage);
         }
+        if(sceneType == "UpdateProfile"){
+            return new UpdateProfileScene(primaryStage);
+        }
         // Default, return login scene
         return new LoginScene(primaryStage);
     }

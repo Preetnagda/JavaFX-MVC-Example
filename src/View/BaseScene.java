@@ -13,6 +13,8 @@ public abstract class BaseScene {
 
     protected Scene scene;
 
+	protected Controller controller;
+
     public BaseScene(Stage primaryStage){
         this.primaryStage = primaryStage;
     }
@@ -20,6 +22,10 @@ public abstract class BaseScene {
     public abstract String getTitle();
 
     public abstract Scene getScene();
+
+	public Controller getController(){
+		return this.controller;
+	}
 
     public Scene buildScene(String sceneFile){
         
@@ -41,6 +47,7 @@ public abstract class BaseScene {
 		Controller controller = loader.getController();
 		controller.setPrimaryStage(this.primaryStage);
 
+		this.controller = controller;
 		
 		// create a scene
 		Scene scene = new Scene(parentNode);
