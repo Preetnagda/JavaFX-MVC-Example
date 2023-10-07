@@ -9,7 +9,6 @@ import javafx.scene.control.TextField;
 import src.CustomExceptions.DuplicateUser;
 import src.Model.User;
 import src.Model.DAO.UserDAOImpl;
-import src.View.BaseScene;
 
 public class UpdateProfileController extends LoggedInController {
     @FXML
@@ -33,9 +32,7 @@ public class UpdateProfileController extends LoggedInController {
 
     @FXML
     public void cancelUserUpdate(ActionEvent event){
-        BaseScene dashboardScene = switchScene("Dashboard");
-        LoggedInController newController = (LoggedInController)dashboardScene.getController();
-        newController.setUser(user);
+        switchScene("Dashboard", user);
     }
 
     @FXML
@@ -53,10 +50,7 @@ public class UpdateProfileController extends LoggedInController {
         User updatedUser = new User(inputFirstname, inputLastname, inputUsername, inputNewPassword, user.getIsVip());
         try {
             new UserDAOImpl().updateUser(user.getUsername(), updatedUser);
-
-            BaseScene dashboardScene = switchScene("Dashboard");
-            DashboardController newController = (DashboardController)dashboardScene.getController();
-            newController.setUser(updatedUser);
+            switchScene("Dashboard", user);
         } catch (DuplicateUser e) {
             generateError("Duplicate Username. Please try again with a different username.");
         } catch (SQLException e){

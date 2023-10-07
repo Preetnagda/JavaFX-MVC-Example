@@ -1,11 +1,8 @@
 package src.Controller;
-
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.text.Text;
 import src.Model.User;
-import src.View.BaseScene;
 
 public class DashboardController extends LoggedInController{
 
@@ -20,9 +17,12 @@ public class DashboardController extends LoggedInController{
 
     @FXML
     public void updateProfile(ActionEvent event){
-        BaseScene newScene = switchScene("UpdateProfile");
-        LoggedInController newController = (LoggedInController) newScene.getController();
-        newController.setUser(user);
+        switchScene("UpdateProfile", user);
+    }
+
+    @FXML
+    public void addPost(ActionEvent event){
+        switchScene("AddPost", user);
     }
 
 }
