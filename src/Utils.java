@@ -68,4 +68,9 @@ public class Utils {
             throw new InvalidInputDataType(String.format("Invalid date format. Expected %s", DATE_FORMAT));
         }
     }
+
+    public static String getStringFromDate(LocalDateTime date){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_FORMAT);
+        return formatter.format(date);
+    }
 }
