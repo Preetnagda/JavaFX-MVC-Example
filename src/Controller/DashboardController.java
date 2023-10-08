@@ -25,4 +25,8 @@ public class DashboardController extends LoggedInController{
         switchScene("AddPost", user);
     }
 
+    @FXML
+    public void retrievePost(ActionEvent event){
+        switchScene("RetrievePost", user);
+    }
 }

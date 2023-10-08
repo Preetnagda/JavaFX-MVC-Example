@@ -16,6 +16,12 @@ public class SceneFactory {
         if(sceneType == "UpdateProfile"){
             return new UpdateProfileScene(primaryStage);
         }
+        if(sceneType == "AddPost"){
+            return new AddPostScene(primaryStage);
+        }
+        if(sceneType == "RetrievePost"){
+            return new RetrievePostScene(primaryStage);
+        }
         // Default, return login scene
         return new LoginScene(primaryStage);
     }
