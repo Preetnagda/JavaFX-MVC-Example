@@ -29,4 +29,10 @@ public class DashboardController extends LoggedInController{
     public void retrievePost(ActionEvent event){
         switchScene("RetrievePost", user);
     }
+
+    @FXML
+    public void logout(ActionEvent event){
+        this.user = null;
+        switchScene("Login");
+    }
 }
