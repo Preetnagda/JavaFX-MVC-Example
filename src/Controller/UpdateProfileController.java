@@ -37,7 +37,7 @@ public class UpdateProfileController extends LoggedInController {
 
     @FXML
     public void updateRequest(ActionEvent event){
-        if(!isAuth()){
+        if(!isAuth() || !validateUserInput()){
             return;
         }
         String inputFirstname = firstname.getText();
@@ -50,11 +50,26 @@ public class UpdateProfileController extends LoggedInController {
         User updatedUser = new User(inputFirstname, inputLastname, inputUsername, inputNewPassword, user.getIsVip());
         try {
             new UserDAOImpl().updateUser(user.getUsername(), updatedUser);
-            switchScene("Dashboard", user);
+            switchScene("Dashboard", updatedUser);
         } catch (DuplicateUser e) {
             generateError("Duplicate Username. Please try again with a different username.");
         } catch (SQLException e){
             generateError("Unable to complete request currently.");
         }
+    }
+
+    private Boolean validateUserInput(){
+        String inputFirstname = firstname.getText();
+        String inputLastname = lastname.getText();
+        String inputUsername = username.getText();
+
+        if(inputFirstname.isEmpty() ||
+        inputLastname.isEmpty() ||
+        inputUsername.isEmpty()){
+            generateError("Fields cannot be empty");
+            return false;
+        }
+        
+        return true;
     }
 }
