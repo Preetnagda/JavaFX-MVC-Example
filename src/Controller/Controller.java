@@ -29,4 +29,8 @@ public abstract class Controller {
     protected void generateError(String errorString){
         error.setText(errorString);
     }
+
+    protected void clearError(){
+        error.setText("");
+    }
 }

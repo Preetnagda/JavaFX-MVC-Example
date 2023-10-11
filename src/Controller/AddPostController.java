@@ -76,6 +76,7 @@ public class AddPostController extends LoggedInController {
 
         try {
             postDAO.addPost(newPost);
+            switchScene("Dashboard", user);
         } catch (SQLException e) {
             generateError("Unable to add Post at this moment, please try again later");
         } catch(DuplicatePost e){
