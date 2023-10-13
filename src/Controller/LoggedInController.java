@@ -1,16 +1,16 @@
 package src.Controller;
 
-import src.Model.User;
+import src.Model.AuthUser;
 import src.View.BaseScene;
 
 public class LoggedInController extends Controller {
-    protected User user;
+    protected AuthUser user;
 
-    public void setUser(User user){
+    public void setUser(AuthUser user){
         this.user = user;
     }
 
-    public BaseScene switchScene(String sceneType, User user){
+    public BaseScene switchScene(String sceneType, AuthUser user){
         BaseScene newScene = super.switchScene(sceneType);
         LoggedInController newController = (LoggedInController) newScene.getController();
         newController.setUser(user);

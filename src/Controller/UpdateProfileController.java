@@ -7,7 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import src.CustomExceptions.DuplicateUser;
-import src.Model.User;
+import src.Model.AuthUser;
 import src.Model.DAO.UserDAOImpl;
 
 public class UpdateProfileController extends LoggedInController {
@@ -23,7 +23,7 @@ public class UpdateProfileController extends LoggedInController {
     private PasswordField newPassword;
 
     @Override
-    public void setUser(User user){
+    public void setUser(AuthUser user){
         super.setUser(user);
         firstname.setText(user.getFirstname());
         lastname.setText(user.getLastname());
@@ -47,7 +47,7 @@ public class UpdateProfileController extends LoggedInController {
         if(inputNewPassword.isEmpty()){
             inputNewPassword = user.getPassword();
         }
-        User updatedUser = new User(inputFirstname, inputLastname, inputUsername, inputNewPassword, user.getIsVip());
+        AuthUser updatedUser = new AuthUser(this.user.getUserId(), inputFirstname, inputLastname, inputUsername, inputNewPassword, user.getIsVip());
         try {
             new UserDAOImpl().updateUser(user.getUsername(), updatedUser);
             switchScene("Dashboard", updatedUser);

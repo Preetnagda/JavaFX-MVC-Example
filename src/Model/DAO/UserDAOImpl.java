@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import src.CustomExceptions.DuplicateUser;
+import src.Model.AuthUser;
 import src.Model.User;
 
 public class UserDAOImpl implements UserDAO {
@@ -29,14 +30,14 @@ public class UserDAOImpl implements UserDAO {
         }
     }
 
-    public User getUserByCredentials(String username, String password){
+    public AuthUser getUserByCredentials(String username, String password){
         DatabaseConnection dbCon = new DatabaseConnection();
         try{
             Statement statement = dbCon.con.createStatement();
             String sqlQuery = String.format("SELECT * FROM User WHERE username = '%s' AND password = '%s';", username, password);
             ResultSet createResult = statement.executeQuery(sqlQuery);
             System.out.println(createResult);
-            User user = createUserInstance(createResult);
+            AuthUser user = createUserInstance(createResult);
             dbCon.close();
             return user;
 
@@ -49,7 +50,7 @@ public class UserDAOImpl implements UserDAO {
         }
     }
 
-    public void updateUser(String username, User user) throws DuplicateUser, SQLException{
+    public void updateUser(String username, AuthUser user) throws DuplicateUser, SQLException{
         DatabaseConnection dbCon = new DatabaseConnection();
         try{
             Statement statement = dbCon.con.createStatement();
@@ -70,7 +71,7 @@ public class UserDAOImpl implements UserDAO {
             System.out.println(e.getMessage());
             dbCon.close();
 
-            if(e.getMessage().contains("[SQLITE_CONSTRAINT_PRIMARYKEY]")){
+            if(e.getMessage().contains("[SQLITE_CONSTRAINT_UNIQUE]")){
                 throw new DuplicateUser();
             }
             throw e;
@@ -82,7 +83,7 @@ public class UserDAOImpl implements UserDAO {
         DatabaseConnection dbCon = new DatabaseConnection();
         try{
             Statement statement = dbCon.con.createStatement();
-            String sqlQuery = String.format("SELECT count(username) FROM User WHERE username = %s",username);
+            String sqlQuery = String.format("SELECT count(id) FROM User WHERE username = %s",username);
             ResultSet result = statement.executeQuery(sqlQuery);
             if(result.next()){
                 if(result.getInt(0) != 0){
@@ -101,16 +102,17 @@ public class UserDAOImpl implements UserDAO {
 
     }
 
-    private User createUserInstance(ResultSet queryResult) throws SQLException{
+    private AuthUser createUserInstance(ResultSet queryResult) throws SQLException{
         if(!queryResult.next()){
             return null;
         }
+        Integer id = (Integer) queryResult.getObject("id");
         String firstname = (String) queryResult.getObject("firstname");
         String lastname = (String) queryResult.getObject("lastname");
         String username = (String) queryResult.getObject("username");
         String password = (String) queryResult.getObject("password");
         Integer isVip = (Integer) queryResult.getObject("is_vip");
 
-        return new User(firstname, lastname, username, password, isVip);
+        return new AuthUser(id, firstname, lastname, username, password, isVip);
     }
 }

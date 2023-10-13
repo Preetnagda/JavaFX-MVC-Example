@@ -4,7 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import src.Model.User;
+import src.Model.AuthUser;
 import src.Model.DAO.UserDAO;
 import src.Model.DAO.UserDAOImpl;
 import src.View.BaseScene;
@@ -26,7 +26,7 @@ public class LoginController extends Controller{
             return;
         }
         UserDAO userdao = new UserDAOImpl();
-        User loggedInUser = userdao.getUserByCredentials(inputUsername, inputPassword);
+        AuthUser loggedInUser = userdao.getUserByCredentials(inputUsername, inputPassword);
 
         if (loggedInUser != null){
             BaseScene newScene = switchScene("Dashboard");

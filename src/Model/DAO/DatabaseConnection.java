@@ -12,7 +12,7 @@ public class DatabaseConnection {
 
         try {
             // Database URL, assuming the database file is in the project directory
-            String url = "jdbc:sqlite:database.db";
+            String url = "jdbc:sqlite:datahub.db";
 
             // Establish the connection
             con = DriverManager.getConnection(url);

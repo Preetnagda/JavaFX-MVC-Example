@@ -2,7 +2,7 @@ package src.Controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.text.Text;
-import src.Model.User;
+import src.Model.AuthUser;
 
 public class DashboardController extends LoggedInController{
 
@@ -10,7 +10,7 @@ public class DashboardController extends LoggedInController{
     private Text usernameGreeting;
 
     @Override
-    public void setUser(User user){
+    public void setUser(AuthUser user){
         super.setUser(user);
         usernameGreeting.setText(user.getFirstname());
     }

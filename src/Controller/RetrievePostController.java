@@ -55,6 +55,7 @@ public class RetrievePostController extends LoggedInController {
         likes.setText(Integer.toString(retrievedPost.getLikes()));
         shares.setText(Integer.toString(retrievedPost.getShares()));
         date.setText(Utils.getStringFromDate(retrievedPost.getCreationDate()));
+        clearError();
     }
 
     private void emptyFields(){
