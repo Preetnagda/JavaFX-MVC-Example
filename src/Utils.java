@@ -2,6 +2,7 @@ package src;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -57,6 +58,19 @@ public class Utils {
             }
         }
         return records;
+    }
+
+    public static void generatePostCsv(Post post, String filePath){
+        try (FileWriter writer = new FileWriter(filePath)) {
+            // Write the header
+            writer.append("ID,content,author,likes, shares, date-time\n");
+
+            // Write call data
+            writer.append(String.join(",", Integer.toString(post.getId()), post.getContent(), post.getAuthor(), Integer.toString(post.getLikes()), Integer.toString(post.getShares()), getStringFromDate(post.getCreationDate())))
+                    .append("\n");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public static LocalDateTime parseDate(String dateString) throws InvalidInputDataType{
