@@ -15,6 +15,7 @@ public class Post{
     private int likes;
     private int shares;
     private LocalDateTime dateTime;
+    private int userId;
 
     public Post(int id, String content, String author, int likes, int shares, LocalDateTime dateTime){
         this.id = id;
@@ -23,6 +24,14 @@ public class Post{
         this.likes = likes;
         this.shares = shares;
         this.dateTime = dateTime;
+    }
+
+    public void setUser(int userId){
+        this.userId = userId;
+    }
+
+    public int getUser(){
+        return userId;
     }
 
     public int getId(){

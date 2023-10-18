@@ -11,6 +11,7 @@ import java.util.HashMap;
 
 import src.Utils;
 import src.CustomExceptions.DuplicatePost;
+import src.Model.AuthUser;
 import src.Model.Post;
 import src.Model.PostLikesComparator;
 import src.Model.PostSharesComparator;
@@ -50,13 +51,13 @@ public class PostDAOImpl implements PostDAO{
      * @param post
      * @throws DuplicatePost
      */
-    public void addPost(Post newItem) throws SQLException, DuplicatePost{
+    public void addPost(Post newItem, AuthUser user) throws SQLException, DuplicatePost{
         DatabaseConnection dbCon = new DatabaseConnection();
         try{
             Statement statement = dbCon.con.createStatement();
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern(Utils.DATE_FORMAT);
-            String sqlQuery = String.format("INSERT INTO Post VALUES (%d, '%s', '%s', %d, %d, '%s');",
-                newItem.getId(), newItem.getContent(), newItem.getAuthor(), newItem.getLikes(), newItem.getShares(), formatter.format(newItem.getCreationDate()));
+            String sqlQuery = String.format("INSERT INTO Post (content, author, likes, shares, creationDate, user_id) VALUES ('%s', '%s', %d, %d, '%s', %d);",
+                newItem.getContent(), newItem.getAuthor(), newItem.getLikes(), newItem.getShares(), formatter.format(newItem.getCreationDate()), user.getUserId());
             statement.executeUpdate(sqlQuery);
             dbCon.close();
         } catch(SQLException e){
@@ -76,7 +77,8 @@ public class PostDAOImpl implements PostDAO{
         try{
             Statement statement = dbCon.con.createStatement();
             String sqlQuery = String.format("SELECT * FROM Post WHERE id = '%s';", postID);
-            Post newPost = createPostInstance(statement.executeQuery(sqlQuery));
+            ResultSet resultset = statement.executeQuery(sqlQuery);
+            Post newPost = createPostInstance(resultset);
             dbCon.close();
             return newPost;
         } catch(SQLException e){
@@ -87,8 +89,47 @@ public class PostDAOImpl implements PostDAO{
         }
     }
 
-    public Boolean deletePost(int postID){
-        return itemList.remove(postID) != null;
+    public ArrayList<Post> retrievePosts(PostCondition conditions){
+        DatabaseConnection dbCon = new DatabaseConnection();
+        try{
+            Statement statement = dbCon.con.createStatement();
+            String sqlQuery = String.format("SELECT * FROM Post");
+            if(conditions != null && !conditions.toString().isEmpty()){
+                sqlQuery += " " + conditions;
+            }
+            ArrayList<Post> posts = new ArrayList<Post>();
+            ResultSet resultset = statement.executeQuery(sqlQuery);
+            while(true){
+                Post newPost = createPostInstance(resultset);
+                if(newPost == null){
+                    break;
+                }
+                posts.add(newPost);
+            }
+            dbCon.close();
+            return posts;
+        } catch(SQLException e){
+            System.out.println("Error while connecting to the database");
+            System.out.println(e.getMessage());
+            dbCon.close();
+            return null;
+        }
+    }
+
+    public Boolean deletePost(Post post){
+        DatabaseConnection dbCon = new DatabaseConnection();
+        try{
+            Statement statement = dbCon.con.createStatement();
+            String sqlQuery = String.format("DELETE FROM Post WHERE id = '%d';", post.getId());
+            statement.executeUpdate(sqlQuery);
+            dbCon.close();
+            return true;
+        } catch(SQLException e){
+            System.out.println("Error while connecting to the database");
+            System.out.println(e.getMessage());
+            dbCon.close();
+            return false;
+        }
     }
 
     /**
@@ -133,6 +174,7 @@ public class PostDAOImpl implements PostDAO{
     }
 
     private Post createPostInstance(ResultSet queryResult) throws SQLException{
+        Post newPost;
         if(!queryResult.next()){
             return null;
         }
@@ -145,7 +187,12 @@ public class PostDAOImpl implements PostDAO{
         LocalDateTime dateTime;
         try{
             dateTime = Utils.parseDate(dateString);
-            return new Post(id, content, author, likes, shares, dateTime);
+            newPost = new Post(id, content, author, likes, shares, dateTime);
+            try {
+                Integer user_id = (Integer) queryResult.getObject("user_id");
+                newPost.setUser(user_id);  
+            } catch (Exception e) {}
+            return newPost;
         } catch (Exception e){
             System.out.println(e);
         }
