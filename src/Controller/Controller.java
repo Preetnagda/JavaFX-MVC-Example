@@ -1,5 +1,6 @@
 package src.Controller;
 import javafx.fxml.FXML;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import src.View.BaseScene;
@@ -28,9 +29,23 @@ public abstract class Controller {
 
     protected void generateError(String errorString){
         error.setText(errorString);
+        error.setFill(Color.RED);
+    }
+
+    protected void generateNotification(String errorString, String notificationType){
+        error.setText(errorString);
+        if(notificationType.equals("success")){
+            error.setFill(Color.GREEN);
+        }
+        if(notificationType.equals("error")){
+            error.setFill(Color.RED);
+        }
     }
 
     protected void clearError(){
         error.setText("");
+        error.setFill(Color.RED);
     }
+
+    public void init(){}
 }
