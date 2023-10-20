@@ -21,7 +21,7 @@ public class UserDAOImpl implements UserDAO {
      * @throws DuplicateUser Thrown if a user with the same primary key (username) already exists in the database.
      */
     public void createUser(User user) throws DuplicateUser, SQLException {
-        DatabaseConnection dbCon = new DatabaseConnection();
+        DatabaseConnection dbCon = createDatabaseConnection();
         try {
             Statement statement = dbCon.con.createStatement();
             String sqlQuery = String.format("INSERT INTO User (username, password, firstname, lastname) VALUES ('%s', '%s', '%s', '%s');",
@@ -48,7 +48,7 @@ public class UserDAOImpl implements UserDAO {
      * @return The retrieved AuthUser object or null if not found.
      */
     public AuthUser getUserByCredentials(String username, String password) {
-        DatabaseConnection dbCon = new DatabaseConnection();
+        DatabaseConnection dbCon = createDatabaseConnection();
         try {
             Statement statement = dbCon.con.createStatement();
             String sqlQuery = String.format("SELECT * FROM User WHERE username = '%s' AND password = '%s';", username, password);
@@ -72,7 +72,7 @@ public class UserDAOImpl implements UserDAO {
      * @throws DuplicateUser Thrown if there is a conflict with unique constraints.
      */
     public void updateUser(String username, AuthUser user) throws DuplicateUser, SQLException {
-        DatabaseConnection dbCon = new DatabaseConnection();
+        DatabaseConnection dbCon = createDatabaseConnection();
         try {
             Statement statement = dbCon.con.createStatement();
             String sqlQuery = String.format("""
@@ -108,7 +108,7 @@ public class UserDAOImpl implements UserDAO {
      * @throws SQLException Thrown if there is an issue with the database update.
      */
     public AuthUser updateUserVipStatus(AuthUser user, Integer vipStatus) throws SQLException {
-        DatabaseConnection dbCon = new DatabaseConnection();
+        DatabaseConnection dbCon = createDatabaseConnection();
         try {
             Statement statement = dbCon.con.createStatement();
             String sqlQuery = String.format("""
@@ -136,7 +136,7 @@ public class UserDAOImpl implements UserDAO {
      * @return true if the username exists, false if it does not.
      */
     public Boolean isUsernameExists(String username) {
-        DatabaseConnection dbCon = new DatabaseConnection();
+        DatabaseConnection dbCon = createDatabaseConnection();
         try {
             Statement statement = dbCon.con.createStatement();
             String sqlQuery = String.format("SELECT count(id) FROM User WHERE username = '%s'", username);
@@ -175,5 +175,9 @@ public class UserDAOImpl implements UserDAO {
         Integer isVip = (Integer) queryResult.getObject("is_vip");
 
         return new AuthUser(id, firstname, lastname, username, password, isVip);
+    }
+
+    public DatabaseConnection createDatabaseConnection() {
+        return new DatabaseConnection();
     }
 }
