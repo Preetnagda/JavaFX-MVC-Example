@@ -16,32 +16,10 @@
    <children>
       <VBox layoutX="160.0" layoutY="35.0">
          <children>
-            <HBox>
-               <children>
-                  <VBox prefHeight="45.0" prefWidth="140.0">
-                     <children>
-                        <Label text="Post ID" />
-                        <TextField fx:id="postID" prefHeight="25.0" prefWidth="138.0" />
-                     </children>
-                     <padding>
-                        <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
-                     </padding>
-                  </VBox>
-                  <VBox prefHeight="45.0" prefWidth="140.0">
-                     <children>
-                        <Label text="Author" />
-                        <TextField fx:id="author" prefHeight="25.0" prefWidth="122.0" />
-                     </children>
-                     <padding>
-                        <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
-                     </padding>
-                  </VBox>
-               </children>
-            </HBox>
-            <VBox prefHeight="80.0" prefWidth="280.0">
+            <VBox prefHeight="190.0" prefWidth="280.0">
                <children>
                   <Label text="Content" />
-                  <TextArea fx:id="content" prefHeight="60.0" prefWidth="264.0" />
+                  <TextArea fx:id="content" prefHeight="157.0" prefWidth="264.0" />
                </children>
                <padding>
                   <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
@@ -69,18 +47,6 @@
                   </VBox>
                </children>
             </HBox>
-            <VBox prefHeight="60.0" prefWidth="100.0">
-               <children>
-                  <Label text="Date (DD/MM/YYYY HH:MM)" />
-                  <TextField fx:id="date" />
-               </children>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-               <padding>
-                  <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
-               </padding>
-            </VBox>
             <Text fx:id="error" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0">
                <VBox.margin>
                   <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
@@ -88,7 +54,7 @@
             </Text>
             <ButtonBar prefHeight="40.0" prefWidth="200.0">
               <buttons>
-                  <Hyperlink onAction="#cancelAddPost" text="Cancel" />
+                  <Hyperlink onAction="#cancelAddPost" prefHeight="25.0" text="Cancel" />
                 <Button mnemonicParsing="false" onAction="#addPostRequest" text="Add" />
               </buttons>
             </ButtonBar>

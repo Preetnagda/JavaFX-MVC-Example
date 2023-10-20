@@ -32,6 +32,7 @@ public class LoginController extends Controller{
             BaseScene newScene = switchScene("Dashboard");
             LoggedInController newController = (LoggedInController) newScene.getController();
             newController.setUser(loggedInUser);
+            newController.initWithUser();
         } else{
             generateError("Invalid Credentials");
         }

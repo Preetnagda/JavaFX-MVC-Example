@@ -19,8 +19,8 @@ public class SceneFactory {
         if(sceneType == "AddPost"){
             return new AddPostScene(primaryStage);
         }
-        if(sceneType == "RetrievePost"){
-            return new RetrievePostScene(primaryStage);
+        if(sceneType == "Analysis"){
+            return new AnalysisScene(primaryStage);
         }
         // Default, return login scene
         return new LoginScene(primaryStage);

@@ -14,8 +14,11 @@ public class LoggedInController extends Controller {
         BaseScene newScene = super.switchScene(sceneType);
         LoggedInController newController = (LoggedInController) newScene.getController();
         newController.setUser(user);
+        newController.initWithUser();
         return newScene;
     }
+
+    public void initWithUser(){}
 
     protected Boolean isAuth(){
         if(this.user == null){

@@ -46,7 +46,7 @@ public abstract class BaseScene {
 		
 		Controller controller = loader.getController();
 		controller.setPrimaryStage(this.primaryStage);
-
+		controller.init();
 		this.controller = controller;
 		
 		// create a scene

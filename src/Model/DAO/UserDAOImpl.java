@@ -79,6 +79,29 @@ public class UserDAOImpl implements UserDAO {
 
     }
 
+    public AuthUser updateUserVipStatus(AuthUser user, Integer vipStatus) throws SQLException{
+        DatabaseConnection dbCon = new DatabaseConnection();
+        try{
+            Statement statement = dbCon.con.createStatement();
+            String sqlQuery = String.format("""
+                UPDATE User 
+                SET is_vip = '%d'
+                WHERE username = '%s';
+                """, vipStatus, user.getUsername());
+
+            statement.executeUpdate(sqlQuery);
+            AuthUser newUser = new AuthUser(user.getIsVip(), user.getFirstname(), user.getLastname(), user.getUsername(), user.getPassword(), vipStatus);
+            dbCon.close();
+            return newUser;
+        } catch(SQLException e){
+            System.out.println("Error while connecting to the database");
+            System.out.println(e.getMessage());
+            dbCon.close();
+            throw e;
+        }
+
+    }
+
     public Boolean isUsernameExists(String username){
         DatabaseConnection dbCon = new DatabaseConnection();
         try{
