@@ -21,13 +21,21 @@ public class PostBuilder {
         return this;
     }
 
-    public PostBuilder addLikes(Object likes) throws NumberFormatException{
+    public PostBuilder addLikes(Object likes) throws NumberFormatException, InvalidInputDataType{
         this.likes = Integer.parseInt((String)likes);
+        if(this.likes < 0){
+            this.likes = null;
+            throw new InvalidInputDataType("");
+        }
         return this;
     }
 
-    public PostBuilder addShares(Object shares) throws NumberFormatException{
+    public PostBuilder addShares(Object shares) throws NumberFormatException, InvalidInputDataType{
         this.shares = Integer.parseInt((String)shares);
+        if(this.shares < 0){
+            this.shares = null;
+            throw new InvalidInputDataType("");
+        }
         return this;
     }
     public PostBuilder addContent(Object content){
@@ -44,7 +52,7 @@ public class PostBuilder {
         this.postDate = Utils.parseDate((String)date);
         return this;
     }
-    
+
     /**
      * Builds a Post object with the attributes set in the builder.
      *

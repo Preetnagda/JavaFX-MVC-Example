@@ -52,11 +52,17 @@ public class AddPostController extends LoggedInController {
         } catch (NumberFormatException e) {
             generateError("Invalid Likes, please enter a valid integer");
             return;
+        } catch (InvalidInputDataType e) {
+            generateError("Invalid Likes, please enter a valid positive integer");
+            return;
         }
         try {
             postBuilder.addShares(shares.getText());
         } catch (NumberFormatException e) {
             generateError("Invalid Shares, please enter a valid integer");
+            return;
+        } catch (InvalidInputDataType e) {
+            generateError("Invalid Shares, please enter a valid positive integer");
             return;
         }
 
