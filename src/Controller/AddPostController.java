@@ -24,12 +24,12 @@ public class AddPostController extends LoggedInController {
     private TextField shares;
 
     @FXML
-    public void cancelAddPost(ActionEvent event){
+    private void cancelAddPost(ActionEvent event){
         switchScene("Dashboard", user);
     }
 
     @FXML
-    public void addPostRequest(ActionEvent event){
+    private void addPostRequest(ActionEvent event){
 
         if(!isAuth()){
             return;
