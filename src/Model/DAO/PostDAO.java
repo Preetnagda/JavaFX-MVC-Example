@@ -1,4 +1,4 @@
-package src.Model.DAO;
+package src.model.dao;
 
 public interface PostDAO {
     

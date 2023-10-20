@@ -1,4 +1,4 @@
-package src.Model.DAO;
+package src.model.dao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -10,11 +10,11 @@ import java.util.Comparator;
 import java.util.HashMap;
 
 import src.Utils;
-import src.CustomExceptions.DuplicatePost;
-import src.Model.AuthUser;
-import src.Model.Post;
-import src.Model.PostLikesComparator;
-import src.Model.PostSharesComparator;
+import src.model.AuthUser;
+import src.model.Post;
+import src.model.PostLikesComparator;
+import src.model.PostSharesComparator;
+import src.custom_exception.DuplicatePost;
 
 /**
  * PostCollection implements the collection of Posts. 

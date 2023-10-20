@@ -1,7 +1,7 @@
-package src.Controller;
+package src.controller;
 
-import src.Model.AuthUser;
-import src.View.BaseScene;
+import src.view.BaseScene;
+import src.model.AuthUser;
 
 public class LoggedInController extends Controller {
     protected AuthUser user;

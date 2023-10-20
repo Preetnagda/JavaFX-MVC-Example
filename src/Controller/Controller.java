@@ -1,10 +1,10 @@
-package src.Controller;
+package src.controller;
 import javafx.fxml.FXML;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import src.View.BaseScene;
-import src.View.SceneFactory;
+import src.view.BaseScene;
+import src.view.SceneFactory;
 
 public abstract class Controller {
 	protected Stage primaryStage;

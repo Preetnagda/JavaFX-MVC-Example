@@ -1,4 +1,4 @@
-package src.CustomExceptions;
+package src.custom_exception;
 
 /**
  * InvalidDataType exception is thrown when the data from input does not

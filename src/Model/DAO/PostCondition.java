@@ -1,9 +1,9 @@
-package src.Model.DAO;
+package src.model.dao;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import src.Model.AuthUser;
+import src.model.AuthUser;
 
 public class PostCondition {
     private String conditionString;

@@ -1,4 +1,4 @@
-package src.Controller;
+package src.controller;
 
 import java.sql.SQLException;
 import java.time.LocalDateTime;
@@ -8,11 +8,11 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import src.Utils;
-import src.CustomExceptions.DuplicatePost;
-import src.CustomExceptions.InvalidInputDataType;
-import src.Model.Post;
-import src.Model.PostBuilder;
-import src.Model.DAO.PostDAOImpl;
+import src.custom_exception.DuplicatePost;
+import src.custom_exception.InvalidInputDataType;
+import src.model.Post;
+import src.model.PostBuilder;
+import src.model.dao.PostDAOImpl;
 
 public class AddPostController extends LoggedInController {
     

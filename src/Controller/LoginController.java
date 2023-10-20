@@ -1,13 +1,13 @@
-package src.Controller;
+package src.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import src.Model.AuthUser;
-import src.Model.DAO.UserDAO;
-import src.Model.DAO.UserDAOImpl;
-import src.View.BaseScene;
+import src.view.BaseScene;
+import src.model.AuthUser;
+import src.model.dao.UserDAO;
+import src.model.dao.UserDAOImpl;
 
 public class LoginController extends Controller{
 

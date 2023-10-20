@@ -1,12 +1,12 @@
-package src.Model.DAO;
+package src.model.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import src.CustomExceptions.DuplicateUser;
-import src.Model.AuthUser;
-import src.Model.User;
+import src.model.AuthUser;
+import src.model.User;
+import src.custom_exception.DuplicateUser;
 
 public class UserDAOImpl implements UserDAO {
     

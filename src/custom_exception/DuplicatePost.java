@@ -1,4 +1,4 @@
-package src.CustomExceptions;
+package src.custom_exception;
 
 /**
  * DuplicatePost Exception class is thrown when inserting a Post with existing ID.

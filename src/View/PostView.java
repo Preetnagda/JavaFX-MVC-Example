@@ -1,4 +1,4 @@
-package src.View;
+package src.view;
 
 import java.util.ArrayList;
 
@@ -9,7 +9,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import src.Utils;
-import src.Model.Post;
+import src.model.Post;
 
 public class PostView extends VBox {
 

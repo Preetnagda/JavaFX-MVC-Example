@@ -1,11 +1,11 @@
-package src.Controller;
+package src.controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import src.Utils;
-import src.Model.Post;
-import src.Model.DAO.PostDAOImpl;
+import src.model.Post;
+import src.model.dao.PostDAOImpl;
 
 public class RetrievePostController extends LoggedInController {
     

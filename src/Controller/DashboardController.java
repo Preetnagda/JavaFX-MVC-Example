@@ -1,4 +1,4 @@
-package src.Controller;
+package src.controller;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -19,14 +19,14 @@ import javafx.scene.text.Text;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import src.Utils;
-import src.CustomExceptions.DuplicatePost;
-import src.CustomExceptions.InvalidInputDataType;
-import src.Model.AuthUser;
-import src.Model.Post;
-import src.Model.DAO.PostDAOImpl;
-import src.Model.DAO.UserDAOImpl;
-import src.Model.DAO.PostCondition;
-import src.View.PostView;
+import src.model.AuthUser;
+import src.model.Post;
+import src.model.dao.PostDAOImpl;
+import src.model.dao.UserDAOImpl;
+import src.model.dao.PostCondition;
+import src.view.PostView;
+import src.custom_exception.DuplicatePost;
+import src.custom_exception.InvalidInputDataType;
 
 public class DashboardController extends LoggedInController{
 

@@ -1,4 +1,4 @@
-package src.Controller;
+package src.controller;
 
 import java.util.ArrayList;
 
@@ -7,8 +7,8 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.chart.PieChart;
-import src.Model.Post;
-import src.Model.DAO.PostDAOImpl;
+import src.model.Post;
+import src.model.dao.PostDAOImpl;
 
 public class AnalysisController extends LoggedInController {
 

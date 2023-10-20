@@ -1,4 +1,4 @@
-package src.View;
+package src.view;
 
 import java.io.IOException;
 
@@ -6,7 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import src.Controller.Controller;
+import src.controller.Controller;
 
 public abstract class BaseScene {
     protected Stage primaryStage;

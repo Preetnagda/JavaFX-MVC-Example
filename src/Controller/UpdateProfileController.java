@@ -1,4 +1,4 @@
-package src.Controller;
+package src.controller;
 
 import java.sql.SQLException;
 
@@ -6,9 +6,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import src.CustomExceptions.DuplicateUser;
-import src.Model.AuthUser;
-import src.Model.DAO.UserDAOImpl;
+import src.model.AuthUser;
+import src.model.dao.UserDAOImpl;
+import src.custom_exception.DuplicateUser;
 
 public class UpdateProfileController extends LoggedInController {
     @FXML

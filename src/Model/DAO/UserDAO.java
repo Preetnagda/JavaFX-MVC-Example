@@ -1,10 +1,10 @@
-package src.Model.DAO;
+package src.model.dao;
 
 import java.sql.SQLException;
 
-import src.CustomExceptions.DuplicateUser;
-import src.Model.AuthUser;
-import src.Model.User;
+import src.model.AuthUser;
+import src.model.User;
+import src.custom_exception.DuplicateUser;
 
 public interface UserDAO {
     void createUser(User user) throws DuplicateUser, SQLException;

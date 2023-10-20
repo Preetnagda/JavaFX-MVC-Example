@@ -11,8 +11,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import src.CustomExceptions.InvalidInputDataType;
-import src.Model.Post;
+import src.custom_exception.InvalidInputDataType;
+import src.model.Post;
 
 /**
  * Util class contains functions acting as general utility functions for the project.
