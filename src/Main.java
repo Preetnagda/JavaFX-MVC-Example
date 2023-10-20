@@ -10,7 +10,7 @@ public class Main extends Application{
 	public void start(Stage primaryStage) throws Exception {
 	
 		LoginScene imageViewerScene = new LoginScene(primaryStage);
-		
+		primaryStage.setResizable(false);
 		primaryStage.setTitle(imageViewerScene.getTitle());
 		primaryStage.setScene(imageViewerScene.getScene());
 		
