@@ -44,7 +44,7 @@ public class AnalysisController extends LoggedInController {
     }
 
     @FXML
-    public void onBack(ActionEvent event){
+    private void onBack(ActionEvent event){
         switchScene("Dashboard", user);
     }
     

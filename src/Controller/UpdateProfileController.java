@@ -31,12 +31,12 @@ public class UpdateProfileController extends LoggedInController {
     }
 
     @FXML
-    public void cancelUserUpdate(ActionEvent event){
+    private void cancelUserUpdate(ActionEvent event){
         switchScene("Dashboard", user);
     }
 
     @FXML
-    public void updateRequest(ActionEvent event){
+    private void updateRequest(ActionEvent event){
         if(!isAuth() || !validateUserInput()){
             return;
         }

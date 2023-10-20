@@ -1,4 +1,4 @@
-package src.Tests;
+package src.tests;
 
 import static org.junit.Assert.assertEquals;
 
@@ -10,16 +10,16 @@ import java.util.List;
 
 import org.junit.Test;
 
-import src.Post;
+import src.model.Post;
 import src.Utils;
-import src.CustomExceptions.InvalidInputDataType;
+import src.custom_exception.InvalidInputDataType;
 
 /**
  * Test all methods of the Utils class.
  */
 public class TestUtils {
 
-    public static String TEST_FILE_PATH = "resources/";
+    public static String TEST_FILE_PATH = "bin/resources/";
 
     @Test
     public void testparseDate() throws InvalidInputDataType{
@@ -44,6 +44,7 @@ public class TestUtils {
      */
     @Test(expected = FileNotFoundException.class)
     public void testCsvParserWithNoFile() throws FileNotFoundException, IOException{
+        System.out.println(System.getProperty("user.dir"));
         Utils.csvReader("");
     }
 

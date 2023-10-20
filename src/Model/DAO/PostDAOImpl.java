@@ -5,15 +5,10 @@ import java.sql.Statement;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
 
 import src.Utils;
 import src.model.AuthUser;
 import src.model.Post;
-import src.model.PostLikesComparator;
-import src.model.PostSharesComparator;
 import src.custom_exception.DuplicatePost;
 
 /**
@@ -23,29 +18,7 @@ import src.custom_exception.DuplicatePost;
  */
 
 public class PostDAOImpl implements PostDAO{
-    private HashMap<Integer, Post> itemList;
-
-    /**
-     * The function is responsible for adding multiple posts at one time. 
-     * It parses all non duplicate posts and throws exception if any duplicates are present.
-     * @param bulkPosts
-     * @throws DuplicatePost
-     */
-    public void addBulkPosts(ArrayList<Post> bulkPosts) throws DuplicatePost{
-        // String exception = new String();
-        // for(Post newPost: bulkPosts){
-            // try{
-                // addPost(newPost);
-            // } catch (DuplicatePost e){
-            //     exception =  exception + e.getMessage();
-            // }
-        // }
-        
-        // if(!exception.isEmpty()){
-        //     throw new DuplicatePost(exception);
-        // }
-    }
-
+    
     /**
      * Add a single post to the post collection.
      * @param post
@@ -72,6 +45,12 @@ public class PostDAOImpl implements PostDAO{
         }
     }
 
+    /**
+     * Retrieve a post from the database by its ID.
+     * 
+     * @param postID The ID of the post to retrieve.
+     * @return The retrieved Post object or null if not found.
+     */
     public Post retrievePost(int postID){
         DatabaseConnection dbCon = new DatabaseConnection();
         try{
@@ -89,6 +68,12 @@ public class PostDAOImpl implements PostDAO{
         }
     }
 
+    /**
+     * Retrieve a list of posts from the database based on specified conditions.
+     * 
+     * @param conditions The conditions for filtering the posts.
+     * @return An ArrayList of Post objects that meet the specified conditions.
+     */
     public ArrayList<Post> retrievePosts(PostCondition conditions){
         DatabaseConnection dbCon = new DatabaseConnection();
         try{
@@ -116,6 +101,12 @@ public class PostDAOImpl implements PostDAO{
         }
     }
 
+    /**
+     * Delete a post from the database.
+     * 
+     * @param post The Post object to be deleted.
+     * @return true if the post is successfully deleted, false otherwise.
+     */
     public Boolean deletePost(Post post){
         DatabaseConnection dbCon = new DatabaseConnection();
         try{
@@ -133,46 +124,12 @@ public class PostDAOImpl implements PostDAO{
     }
 
     /**
-     * Accepts a size of return and comparator
-     * Sorts the post collection based on the comparator and returns the top "size of return" posts.
-     * @param sizeOfReturn
-     * @param comparator
-     * @return
+     * Create a Post object from a ResultSet query result.
+     * 
+     * @param queryResult The ResultSet containing the post data.
+     * @return The created Post object or null if the ResultSet is empty.
+     * @throws SQLException If there's an issue with parsing the data.
      */
-    public ArrayList<Post> getTopPosts(int sizeOfReturn, Comparator<Post> comparator){
-        if(sizeOfReturn > itemList.size()){
-            sizeOfReturn = itemList.size();
-            System.out.println();
-            System.out.println("Only " + Integer.toString(sizeOfReturn) + " posts available. Showing " + Integer.toString(sizeOfReturn) + " results.");
-            System.out.println();
-        }
-
-        ArrayList<Post> postsList = new ArrayList<>(itemList.values());
-        Collections.sort(postsList, comparator);
-        ArrayList<Post> filteredList = new ArrayList<>(postsList.subList(0, sizeOfReturn));
-        return filteredList;
-    }
-
-    /**
-     * Passes the comparator responsible for sorting on likes, to the getTopPosts function
-     * @param sizeOfReturn
-     * @return
-     */
-    public ArrayList<Post> getTopLikedPosts(int sizeOfReturn){
-        PostLikesComparator postLikeComparator = new PostLikesComparator();
-        return getTopPosts(sizeOfReturn, postLikeComparator);
-    }
-
-    /**
-     * Passes the comparator responsible for sorting on shares, to the getTopPosts function
-     * @param sizeOfReturn
-     * @return
-     */
-    public ArrayList<Post> getTopSharedPosts(int sizeOfReturn){
-        PostSharesComparator postSharesComparator = new PostSharesComparator();
-        return getTopPosts(sizeOfReturn, postSharesComparator);
-    }
-
     private Post createPostInstance(ResultSet queryResult) throws SQLException{
         Post newPost;
         if(!queryResult.next()){

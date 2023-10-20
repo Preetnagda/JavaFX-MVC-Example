@@ -2,7 +2,7 @@ package src;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
-import src.View.LoginScene;
+import src.view.LoginScene;
 
 public class Main extends Application{
 

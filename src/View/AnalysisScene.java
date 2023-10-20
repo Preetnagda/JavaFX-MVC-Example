@@ -7,7 +7,6 @@ public class AnalysisScene extends BaseScene{
 
     public AnalysisScene(Stage primaryStage) {
         super(primaryStage);
-        //TODO Auto-generated constructor stub
     }
 
     @Override

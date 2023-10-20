@@ -1,10 +1,13 @@
-package src.Model;
+package src.model;
 
 import java.time.LocalDateTime;
 
 import src.Utils;
-import src.CustomExceptions.InvalidInputDataType;
+import src.custom_exception.InvalidInputDataType;
 
+/**
+ * The PostBuilder class is responsible for constructing Post objects by setting their attributes.
+ */
 public class PostBuilder {
     private Integer postId;
     private Integer likes;
@@ -41,7 +44,12 @@ public class PostBuilder {
         this.postDate = Utils.parseDate((String)date);
         return this;
     }
-
+    
+    /**
+     * Builds a Post object with the attributes set in the builder.
+     *
+     * @return The constructed Post object.
+     */
     public Post build(){
         return new Post(postId, content, author, likes, shares, postDate);
     }

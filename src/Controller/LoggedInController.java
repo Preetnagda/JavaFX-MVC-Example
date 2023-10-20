@@ -3,6 +3,10 @@ package src.controller;
 import src.view.BaseScene;
 import src.model.AuthUser;
 
+/**
+ * The LoggedInController class extends the Controller class and provides functionality specific to views
+ * that can only be used by logged in customers.
+ */
 public class LoggedInController extends Controller {
     protected AuthUser user;
 

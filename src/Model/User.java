@@ -1,5 +1,9 @@
 package src.model;
 
+/**
+ * The User class represents a user entity with attributes such as first name, last name, username,
+ * password, and VIP status.
+ */
 public class User {
     private String firstname;
     private String lastname;

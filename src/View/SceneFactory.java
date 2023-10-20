@@ -2,7 +2,17 @@ package src.view;
 
 import javafx.stage.Stage;
 
+/**
+ * The SceneFactory class is responsible for creating instances of requested scenes.
+ */
 public class SceneFactory {
+    /**
+     * Creates a scene based on the specified type and returns its instance.
+     *
+     * @param primaryStage The primary stage to associate with the created scene.
+     * @param sceneType    The type or identifier of the scene to create.
+     * @return The created BaseScene corresponding to the specified scene type.
+     */
     public BaseScene create(Stage primaryStage, String sceneType){
         if(sceneType == "Login"){
             return new LoginScene(primaryStage);

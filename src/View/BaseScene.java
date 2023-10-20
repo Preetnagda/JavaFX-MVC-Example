@@ -8,6 +8,9 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import src.controller.Controller;
 
+/**
+ * The BaseScene class provides a base for creating JavaFX scenes with associated controllers.
+ */
 public abstract class BaseScene {
     protected Stage primaryStage;
 
@@ -26,7 +29,13 @@ public abstract class BaseScene {
 	public Controller getController(){
 		return this.controller;
 	}
-
+	
+    /**
+     * Builds a JavaFX Scene by loading an FXML file and associating it with a controller.
+     *
+     * @param sceneFile The name of the FXML file representing the scene.
+     * @return The constructed JavaFX Scene object.
+     */
     public Scene buildScene(String sceneFile){
         
         if(scene != null) {

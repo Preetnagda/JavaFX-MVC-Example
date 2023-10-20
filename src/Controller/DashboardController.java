@@ -91,7 +91,7 @@ public class DashboardController extends LoggedInController{
     }
 
     @FXML
-    public void onVipClick(){
+    private void onVipClick(){
         Alert alert = new Alert(AlertType.CONFIRMATION);
         alert.setTitle("Confirmation");
         if(user.getIsVip() == 0){
@@ -103,12 +103,11 @@ public class DashboardController extends LoggedInController{
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK){
             try {
-                AuthUser updatedUser;
                 if(user.getIsVip() == 1){
-                    updatedUser = new UserDAOImpl().updateUserVipStatus(user, 0);
+                    new UserDAOImpl().updateUserVipStatus(user, 0);
                     generateNotification("VIP functionalities will not be available once you logout.", "error");
                 }else{
-                    updatedUser = new UserDAOImpl().updateUserVipStatus(user, 1);
+                    new UserDAOImpl().updateUserVipStatus(user, 1);
                     generateNotification("Please log out and log in again to access VIP functionalities.", "success");
 
                 }
@@ -119,7 +118,7 @@ public class DashboardController extends LoggedInController{
     }
 
     @FXML
-    public void switchSortByLike(){
+    private void switchSortByLike(){
         isSorted = !isSorted;
         if(isSorted){
             condition.addCondition("sort", "likes", "desc");
@@ -187,7 +186,7 @@ public class DashboardController extends LoggedInController{
     }
 
     @FXML
-    public void onTopNposts(ActionEvent event){
+    private void onTopNposts(ActionEvent event){
         if(topNpostsField.getText().isEmpty()){
             condition.deleteCondition("limit", "");
             populateAllPosts();
@@ -205,7 +204,7 @@ public class DashboardController extends LoggedInController{
     }
 
     @FXML
-    public void postIdEntered(ActionEvent event){
+    private void postIdEntered(ActionEvent event){
         String value = postSearchById.getText();
         if(value.isEmpty()){
             condition.deleteCondition("where", "id");
@@ -219,7 +218,7 @@ public class DashboardController extends LoggedInController{
     }
 
     @FXML
-    public void resetView(ActionEvent event){
+    private void resetView(ActionEvent event){
         condition.resetCondition();
         postsTypeSwitchButton.setText("View My Posts");
         sortByLikeButton.setText("Sort By Likes");
@@ -230,12 +229,12 @@ public class DashboardController extends LoggedInController{
     }
 
     @FXML
-    public void updateProfile(ActionEvent event){
+    private void updateProfile(ActionEvent event){
         switchScene("UpdateProfile", user);
     }
 
     @FXML
-    public void addPost(ActionEvent event){
+    private void addPost(ActionEvent event){
         switchScene("AddPost", user);
     }
 
@@ -244,7 +243,7 @@ public class DashboardController extends LoggedInController{
     }
 
     @FXML
-    public void postsTypeSwitch(ActionEvent event){
+    private void postsTypeSwitch(ActionEvent event){
         if(isPostTypeAll){
             postsTypeSwitchButton.setText("View All Posts");
             condition.addCondition(user);
@@ -260,12 +259,12 @@ public class DashboardController extends LoggedInController{
     }
 
     @FXML
-    public void onAnalysisScreen(ActionEvent event){
+    private void onAnalysisScreen(ActionEvent event){
         switchScene("Analysis", user);
     }
 
     @FXML
-    public void onBulkImport(ActionEvent event){
+    private void onBulkImport(ActionEvent event){
         // Create a file chooser
         FileChooser fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV Files", "*.csv"));
@@ -294,7 +293,7 @@ public class DashboardController extends LoggedInController{
     }
 
     @FXML
-    public void logout(ActionEvent event){
+    private void logout(ActionEvent event){
         this.user = null;
         switchScene("Login");
     }

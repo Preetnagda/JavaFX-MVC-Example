@@ -25,7 +25,7 @@ public class SignUpController extends Controller{
     private PasswordField confirmPassword;
 
     @FXML
-    public void onSignUpRequest(ActionEvent event){
+    private void onSignUpRequest(ActionEvent event){
         String inputFirstname = firstname.getText();
         String inputLastname = lastname.getText();
         String inputUsername = username.getText();
@@ -59,7 +59,7 @@ public class SignUpController extends Controller{
     }
 
     @FXML
-    public void login(ActionEvent event){
+    private void login(ActionEvent event){
        switchScene("Login");
     }
 }

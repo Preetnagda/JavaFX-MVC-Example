@@ -18,7 +18,7 @@ public class LoginController extends Controller{
     private PasswordField password;
 
     @FXML
-    public void onLoginRequest(ActionEvent event){
+    private void onLoginRequest(ActionEvent event){
         String inputUsername = username.getText();
         String inputPassword = password.getText();
         if(inputUsername.isEmpty() || inputPassword.isEmpty()){
@@ -39,7 +39,7 @@ public class LoginController extends Controller{
     }
 
     @FXML
-    public void signUp(ActionEvent event){
+    private void signUp(ActionEvent event){
         switchScene("SignUp");
     }
 }

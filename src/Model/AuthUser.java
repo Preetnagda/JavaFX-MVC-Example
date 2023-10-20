@@ -1,5 +1,9 @@
-package src.Model;
+package src.model;
 
+/**
+ * The AuthUser class represents an authenticated user with additional identification attributes.
+ * It extends the User class and includes an ID field.
+ */
 public class AuthUser extends User {
 
     private Integer id;

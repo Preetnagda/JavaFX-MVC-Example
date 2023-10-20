@@ -23,12 +23,12 @@ public class RetrievePostController extends LoggedInController {
     private TextField date;
 
     @FXML
-    public void cancelRetrievePost(ActionEvent event){
+    private void cancelRetrievePost(ActionEvent event){
         switchScene("Dashboard", user);
     }
 
     @FXML
-    public void retrievePostRequest(ActionEvent event){
+    private void retrievePostRequest(ActionEvent event){
         emptyFields();
         Post retrievedPost;
 
